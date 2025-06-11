@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pizzaoven.ui.screens.pizza_oven.models.PizzaTopping
 import com.example.pizzaoven.ui.screens.pizza_oven.models.PizzaUiModel
+import com.example.pizzaoven.ui.theme.PizzaOvenAnimationDuration
 import com.example.pizzaoven.ui.theme.SFPro
 
 @Composable
@@ -75,7 +76,7 @@ private fun PizzaToppingButton(
 ) {
     val bgColor = animateColorAsState(
         if (isSelected) Color(0xFFDDF4E0) else White,
-        animationSpec = tween(500)
+        animationSpec = tween(PizzaOvenAnimationDuration)
     )
     Box(
         modifier = Modifier

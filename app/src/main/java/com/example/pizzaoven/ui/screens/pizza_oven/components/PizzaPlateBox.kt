@@ -30,6 +30,7 @@ import com.example.pizzaoven.R
 import com.example.pizzaoven.ui.screens.pizza_oven.models.PizzaTopping
 import com.example.pizzaoven.ui.screens.pizza_oven.models.PizzaType
 import com.example.pizzaoven.ui.screens.pizza_oven.models.PizzaUiModel
+import com.example.pizzaoven.ui.theme.PizzaOvenAnimationDuration
 import kotlin.random.Random
 
 @Composable
@@ -57,7 +58,7 @@ fun PizzaPlate(
         LaunchedEffect(key1 = PizzaType.entries.indexOf(pizza.pizzaType)) {
             pagerState.animateScrollToPage(
                 PizzaType.entries.indexOf(pizza.pizzaType),
-                animationSpec = tween(500)
+                animationSpec = tween(PizzaOvenAnimationDuration)
             )
         }
 
@@ -79,7 +80,7 @@ fun PizzaPlate(
                     contentAlignment = Alignment.Center,
                 ) {
                     val animatedPizzaSize =
-                        animateFloatAsState(pizza.pizzaSize.fillFraction, tween(500))
+                        animateFloatAsState(pizza.pizzaSize.fillFraction, tween(PizzaOvenAnimationDuration))
                     Image(
                         painter = painterResource(id = PizzaType.entries[page].image),
                         contentDescription = "",
@@ -87,7 +88,7 @@ fun PizzaPlate(
                         contentScale = ContentScale.FillWidth
                     )
                     val animatedToppingSize =
-                        animateFloatAsState(pizza.pizzaSize.fillFraction, tween(500))
+                        animateFloatAsState(pizza.pizzaSize.fillFraction, tween(PizzaOvenAnimationDuration))
                     val pizzaType = PizzaType.entries[page]
                     PizzaTopping.entries.forEach { topping ->
                         Column(
@@ -96,7 +97,7 @@ fun PizzaPlate(
                         ) {
                             AnimatedVisibility(
                                 pizza.pizzaToppings[pizzaType]?.contains(topping) == true,
-                                enter = scaleIn(initialScale = 50f, animationSpec = tween(500)),
+                                enter = scaleIn(initialScale = 50f, animationSpec = tween(PizzaOvenAnimationDuration)),
                                 exit = fadeOut(tween(200)),
                             ) {
                                 Box(
@@ -112,12 +113,12 @@ fun PizzaPlate(
                                                     remember { (Random.nextFloat() - 0.5f) * 300 }
                                                 val randomAnimatedX =
                                                     animateFloatAsState(
-                                                        randomX * animatedToppingSize.value * 0.9f,
+                                                        randomX * animatedToppingSize.value * 0.85f,
                                                         tween(100)
                                                     )
                                                 val randomAnimatedY =
                                                     animateFloatAsState(
-                                                        randomY * animatedToppingSize.value * 0.9f,
+                                                        randomY * animatedToppingSize.value * 0.85f,
                                                         tween(100)
                                                     )
                                                 Image(

@@ -12,12 +12,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.pizzaoven.ui.theme.PizzaOvenAnimationDuration
 import com.example.pizzaoven.ui.theme.SFPro
 
 @SuppressLint("DefaultLocale")
 @Composable
 fun PizzaPrice(pizzaPrice: Int) {
-    val price = animateIntAsState(pizzaPrice, animationSpec = tween(500))
+    val price = animateIntAsState(pizzaPrice, animationSpec = tween(PizzaOvenAnimationDuration))
     Text(
         text = "\$${price.value}",
         fontFamily = SFPro,

@@ -1,6 +1,7 @@
 package com.example.pizzaoven.ui.screens.pizza_oven.components
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -22,6 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pizzaoven.ui.screens.pizza_oven.models.PizzaSize
+import com.example.pizzaoven.ui.theme.PizzaOvenAnimationDuration
 import com.example.pizzaoven.ui.theme.SFPro
 
 @Composable
@@ -51,8 +53,8 @@ fun PizzaSizeChanger(pizzaSize: PizzaSize, changePizzaSize: (PizzaSize) -> Unit)
             Box(
                 modifier = Modifier
                     .padding(
-                        start = animateFloatAsState(paddingStart).value.dp,
-                        end = animateFloatAsState(paddingEnd).value.dp,
+                        start = animateFloatAsState(paddingStart, tween(PizzaOvenAnimationDuration)).value.dp,
+                        end = animateFloatAsState(paddingEnd, tween(PizzaOvenAnimationDuration)).value.dp,
                     )
                     .padding(top = 24.dp)
                     .size(48.dp)
